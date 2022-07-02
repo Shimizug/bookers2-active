@@ -7,6 +7,11 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <% if current_user.following?(user) %>
+    <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
+  <% else %>
+    <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+  <% end %>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
